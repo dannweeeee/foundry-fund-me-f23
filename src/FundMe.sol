@@ -9,8 +9,8 @@ error FundMe__NotOwner(); //contract-name__error-name --> so that we know where 
 contract FundMe {
     using PriceConverter for uint256;
 
-    mapping(address => uint256) public addressToAmountFunded;
-    address[] public funders;
+    mapping(address => uint256) private s_addressToAmountFunded;
+    address[] private s_funders;
 
     // Could we make this constant?  /* hint: no! We should make it immutable! */
     address public /* immutable */ i_owner;
@@ -25,8 +25,8 @@ contract FundMe {
     function fund() public payable {
         require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, "You need to spend more ETH!");
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
-        addressToAmountFunded[msg.sender] += msg.value;
-        funders.push(msg.sender);
+        s_addressToAmountFunded[msg.sender] += msg.value;
+        s_funders.push(msg.sender);
     }
     
     function getVersion() public view returns (uint256){
@@ -41,11 +41,11 @@ contract FundMe {
     }
     
     function withdraw() public onlyOwner {
-        for (uint256 funderIndex=0; funderIndex < funders.length; funderIndex++){
-            address funder = funders[funderIndex];
-            addressToAmountFunded[funder] = 0;
+        for (uint256 funderIndex=0; funderIndex < s_funders.length; funderIndex++){
+            address funder = s_funders[funderIndex];
+            s_addressToAmountFunded[funder] = 0;
         }
-        funders = new address[](0);
+        s_funders = new address[](0);
         // // transfer
         // payable(msg.sender).transfer(address(this).balance);
         
@@ -76,6 +76,21 @@ contract FundMe {
     receive() external payable {
         fund();
     }
+
+    // In order for us to check whether s_addressToAmountFunded and s_funders are getting updated, we need to write a getter function
+    /**
+    * View / Pure functions (Getters)
+    */
+
+    function getAddressToAmountFunded(address fundingAddress) external view returns (uint256) {
+        return s_addressToAmountFunded[fundingAddress];
+    } // using getters as compare to s_addressToAmountFunded[fundingAddress] directly, this is more readable
+    // private variables are more gas efficient, so we can default them to private and only make public / external view functions as and when we need
+
+    function getFunder(uint256 index) external view returns (address) {
+        return s_funders[index];
+    } // using getters as compare to s_addressToAmountFunded[fundingAddress] directly, this is more readable
+    // private variables are more gas efficient, so we can default them to private and only make public / external view functions as and when we need
 
 }
 
