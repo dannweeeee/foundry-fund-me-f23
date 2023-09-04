@@ -1,6 +1,6 @@
 # Foundry Fund Me
 
-This is a Foundry Fund Me Project that is part of Cyfrin Solidity Blockchain Course.
+A Foundry Fund Me Project that is part of Cyfrin Solidity Blockchain Course.
 
 
 # Getting Started
