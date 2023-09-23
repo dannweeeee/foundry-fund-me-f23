@@ -13,7 +13,7 @@ This is a Foundry Fund Me Project that is part of Cyfrin Solidity Blockchain Cou
   - You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.2.0 (816e00b 2023-03-16T00:05:26.396218Z)`
 
 
-### Quickstart
+### Quick Start
 
 ```
 git clone https://github.com/dannweeeee/foundry-fund-me-f23
@@ -23,7 +23,7 @@ forge build
 
 ## Usage
 
-### Deploy:
+### Deploy
 
 ```
 forge script script/DeployFundMe.s.sol
@@ -68,7 +68,7 @@ forge coverage
 ```
 
 
-## Deployment to a testnet or mainnet
+## Deployment to a Testnet or Mainnet
 
 1. Setup environment variables
 
