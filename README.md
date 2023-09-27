@@ -39,10 +39,6 @@ forge test
 or
 
 ```
-// Only run test functions matching the specified regex pattern.
-
-"forge test -m testFunctionName" is deprecated. Please use
-
 forge test --match-test testFunctionName
 ```
 
