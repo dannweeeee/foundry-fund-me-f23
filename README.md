@@ -2,7 +2,6 @@
 
 This is a Foundry Fund Me Project that is part of Cyfrin Solidity Blockchain Course.
 
-
 ## Getting Started
 
 ### Requirements
@@ -11,7 +10,6 @@ This is a Foundry Fund Me Project that is part of Cyfrin Solidity Blockchain Cou
   - You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
 - [foundry](https://getfoundry.sh/)
   - You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.2.0 (816e00b 2023-03-16T00:05:26.396218Z)`
-
 
 ### Quick Start
 
@@ -31,26 +29,19 @@ forge script script/DeployFundMe.s.sol
 
 ### Testing
 
-We talk about 4 test tiers in the video. 
-
-1. Unit
-2. Integration
-3. Forked
-4. Staging
-
-This repo we cover #1 and #3. 
-
+1. Unit Testing
+2. Forked Testing
 
 ```
 forge test
 ```
 
-or 
+or
 
 ```
 // Only run test functions matching the specified regex pattern.
 
-"forge test -m testFunctionName" is deprecated. Please use 
+"forge test -m testFunctionName" is deprecated. Please use
 
 forge test --match-test testFunctionName
 ```
@@ -66,7 +57,6 @@ forge test --fork-url $SEPOLIA_RPC_URL
 ```
 forge coverage
 ```
-
 
 ## Deployment to a Testnet or Mainnet
 
@@ -92,15 +82,16 @@ forge script script/DeployFundMe.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key 
 
 ### Scripts
 
-After deploying to a testnet or local net, you can run the scripts. 
+After deploying to a testnet or local net, you can run the scripts.
 
-Using cast deployed locally example: 
+Using cast deployed locally example:
 
 ```
 cast send <FUNDME_CONTRACT_ADDRESS> "fund()" --value 0.1ether --private-key <PRIVATE_KEY>
 ```
 
 or
+
 ```
 forge script script/Interactions.s.sol --rpc-url sepolia  --private-key $PRIVATE_KEY  --broadcast
 ```
@@ -121,11 +112,10 @@ forge snapshot
 
 And you'll see an output file called `.gas-snapshot`
 
-
 ## Formatting
 
-
 To run code formatting:
+
 ```
 forge fmt
 ```
